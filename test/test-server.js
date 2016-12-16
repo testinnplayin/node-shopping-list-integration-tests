@@ -206,4 +206,16 @@ describe('Recipes', function() {
         res.body.should.deep.equal(updateRecipe);
       });
   });
+
+  it('should delete a recipe on delete', function() {
+    return chai.request(app)
+      .get('/recipes')
+      .then(function(res) {
+        return chai.request(app)
+          .delete(`/recipes/${res.body[0].id}`);
+      })
+      .then(function(res) {
+        res.should.have.status(204);
+      });
+  });
 });
