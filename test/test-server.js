@@ -179,6 +179,8 @@ describe('Recipes', function() {
         res.should.be.json;
         res.body.should.be.a('object');
         res.body.should.include.keys('id', 'name', 'ingredients');
+        res.body.name.should.not.be.null;
+        res.body.ingredients.should.not.be.null;
         res.body.id.should.not.be.null;
         res.body.should.deep.equal(Object.assign(newRecipe, { id : res.body.id }));
       });
@@ -203,6 +205,9 @@ describe('Recipes', function() {
         res.should.have.status(200);
         res.should.be.json;
         res.body.should.be.a('object');
+        res.body.should.include.keys('id', 'name', 'ingredients');
+        res.body.name.should.not.be.null;
+        res.body.ingredients.should.not.be.null;
         res.body.should.deep.equal(updateRecipe);
       });
   });
